@@ -31,3 +31,56 @@ describe 'creating restaurants' do
 		   expect(current_path).to eq '/restaurants'
         end
 end
+
+describe 'editing restaurants' do
+		 before do
+		 	Restaurant.create(name: 'Casa Pepe')
+		 end
+	     it 'allows a user to edit a restaurant' do
+	     	visit '/restaurants'
+	     	click_link 'Edit Casa Pepe'
+	     	fill_in 'Name', with: 'La Casa de Pepe'
+	     	click_button 'Update Restaurant'
+	     	expect(page).to have_content 'La Casa de Pepe'
+	     	expect(current_path).to eq '/restaurants'
+	     end
+end
+
+describe 'deleting restaurants' do
+	     before do
+	     	Restaurant.create(name: 'Casa Pepe')
+	     end
+	     it 'removes a restaurant when a user clicks a delete link' do
+	     	visit '/restaurants'
+	     	click_link 'Delete'
+	     	expect(page).not_to have_content 'Casa Pepe'
+	     	expect(page).to have_content 'Restaurant deleted successfully'
+	     end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
