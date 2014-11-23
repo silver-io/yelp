@@ -58,6 +58,22 @@ describe 'deleting restaurants' do
 	     end
 end
 
+describe 'showing a restaurant' do
+		context 'viewing restaurants' do
+
+		  before do
+		    Restaurant.create(name: "El Provocon", description: "Best ever")
+		  end
+
+		  it "has a restaurant and it\'s description' restaurant" do
+		   visit '/restaurants'
+		   click_link 'Show El Provocon'
+		   expect(page).to have_content 'Best ever'
+		   expect(current_path).to match(/restaurants\/\d/)
+		  end
+		end
+end
+
 
 
 
