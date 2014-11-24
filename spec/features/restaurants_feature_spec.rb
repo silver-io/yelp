@@ -40,13 +40,9 @@ describe 'creating restaurants' do
 		        fill_in 'Name', with: 'Ta'
 		        click_button 'Create Restaurant'
 		        expect(page).not_to have_css 'h2', text: 'Ta'
-		        expect(page).to have_content 'errors'
-
+		        expect(page).to have_content 'error'
 		     end
-
 	end
-
-
 end
 
 describe 'editing restaurants' do
