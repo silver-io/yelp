@@ -22,14 +22,27 @@ describe 'restaurants' do
 end
 
 describe 'creating restaurants' do
-		 it 'prompts user to fill out a form, then displays the new restaurant' do
-		   visit '/restaurants'
-		   click_link 'Add a restaurant'
-		   fill_in 'Name', with: 'Casa Pepe'
-		   click_button 'Create Restaurant'
-		   expect(page).to have_content 'Casa Pepe'
-		   expect(current_path).to eq '/restaurants'
-        end
+	context 'a valid restaurant' do
+			 it 'prompts user to fill out a form, then displays the new restaurant' do
+			   visit '/restaurants'
+			   click_link 'Add a restaurant'
+			   fill_in 'Name', with: 'Casa Pepe'
+			   click_button 'Create Restaurant'
+			   expect(page).to have_content 'Casa Pepe'
+			   expect(current_path).to eq '/restaurants'
+	        end
+	end
+	
+	context 'an invalid restaurant' do
+		     it 'does not let you submit a restaurant with a very short name' do
+		     	visit '/restaurants'
+		     	click_link 'Add a restaurant'
+		        fill_in 'Name', with: 'Ta'
+		        click_button 'Create Restaurant'
+		        expect(page).not_to have_css 'h2', text: 'Ta'
+		        expect(page).to have_content 'error'
+		     end
+	end
 end
 
 describe 'editing restaurants' do
@@ -73,6 +86,7 @@ describe 'showing a restaurant' do
 		  end
 		end
 end
+
 
 
 
