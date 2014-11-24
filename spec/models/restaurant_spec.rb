@@ -13,6 +13,12 @@ RSpec.describe Restaurant, :type => :model do
   	  expect(restaurant).to have(1).error_on(:name)
   end
 
-
-
+  describe '#average_rating' do
+    context 'no reviews' do
+        it 'returns "N/A" when there are no reviews' do
+          restaurant = Restaurant.create(name: "Red Pizza")
+          expect(restaurant.average_rating).to eq 'N/A'
+        end
+    end
+  end
 end
