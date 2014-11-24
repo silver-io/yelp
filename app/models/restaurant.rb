@@ -3,7 +3,9 @@ class Restaurant < ActiveRecord::Base
 	validates :name, length: {minimum: 3, message: ": this name is too short, choose another one"}, uniqueness: true
 
 	def average_rating
-		"N/A"
+		return "N/A" if reviews.none?
+		reviews.inject(0) {|memo, review| memo + review.rating}
 	end
+
 
 end
