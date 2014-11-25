@@ -1,4 +1,4 @@
-require 'rails_helper'
+ require 'rails_helper'
 
 describe 'reviewing' do
 	before do
@@ -14,7 +14,6 @@ describe 'reviewing' do
 	end
 
 
-
 	it "allows users to leave reviews using the form that appears alongside restaurants" do
 		leave_review("so so ", "3")
 		expect(current_path).to eq '/restaurants'
@@ -26,6 +25,4 @@ describe 'reviewing' do
         leave_review('Great', "5")
         expect(page).to have_content("Average rating: ★★★★☆")
 	end
-
-
 end
