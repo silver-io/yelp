@@ -8,6 +8,8 @@
     <ul>
     	<% restaurant.reviews.each do |review| %>
     	<li> <%= "#{review.thoughts} (#{review.rating})"%></li>
+      <%= link_to 'Endorse reviews', review_endorsements_path(review), method: :post %>
+      <%= review.endorsements.count %> endorsement
     	<%end%>
       <h3>Average rating: <%= star_rating(restaurant.average_rating.to_i) %></h3>
     </ul>
